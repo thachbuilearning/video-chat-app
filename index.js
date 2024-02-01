@@ -29,11 +29,11 @@ io.on("connection", (socket) => {
         io.to(data.to).emit("callAccepted", data.signal);
     });
 
-    // Listener for "callEnded" event
-    socket.on("callEnded", () => {
-        console.log("Call ended event received.");
-        // Add any additional logic related to callEnded event if needed
-    });
+    // // Listener for "callEnded" event
+    // socket.on("callEnded", () => {
+    //     console.log("Call ended event received.");
+    //     // Add any additional logic related to callEnded event if needed
+    // });
 });
 
 server.listen(5000, () => console.log("Video Server is running at port 5000"));
