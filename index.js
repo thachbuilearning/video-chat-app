@@ -3,6 +3,12 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 
+// const io = require("socket.io")(server, {
+//     cors: {
+//         origin: ["https://localhost:3000", "https://127.0.0.1:3000", "https://192.168.1.3:3000"],
+//         method: ["GET", "POST"]
+//     }
+// });
 const io = require("socket.io")(server, {
     cors: {
         origin: ["https://simple-peer-video-chat-app.netlify.app/"],
@@ -36,4 +42,5 @@ io.on("connection", (socket) => {
     // });
 });
 
-server.listen(5000, () => console.log("Video Server is running at port 5000"));
+// server.listen(5000, () => console.log("Video Server is running at port 5000"));
+server.listen(443, () => console.log("Video Server is running at port 443"));
