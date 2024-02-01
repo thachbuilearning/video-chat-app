@@ -42,5 +42,4 @@ io.on("connection", (socket) => {
     // });
 });
 
-// server.listen(5000, () => console.log("Video Server is running at port 5000"));
-server.listen(443, () => console.log("Video Server is running at port 443"));
+server.listen(5000, () => console.log("Video Server is running at port 5000"));
