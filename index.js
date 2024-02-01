@@ -5,7 +5,7 @@ const server = http.createServer(app);
 
 const io = require("socket.io")(server, {
     cors: {
-        origin: ["https://localhost:3000", "https://127.0.0.1:3000", "https://192.168.1.3:3000"],
+        origin: ["https://simple-peer-video-chat-app.netlify.app/"],
         method: ["GET", "POST"]
     }
 });
