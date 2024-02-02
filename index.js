@@ -11,19 +11,23 @@ const server = http.createServer(app);
 // });
 const io = require("socket.io")(server, {
     cors: {
-        origin: ["https://simple-peer-video-chat-app.netlify.app/"],
+        origin: ["https://simple-peer-video-chat-frontend.vercel.app/"],
         method: ["GET", "POST"]
     }
 });
 
 io.on("connection", (socket) => {
+    console.log(`User connected: ${socket.id}`);
+
     socket.emit('me', socket.id);
 
     socket.on("disconnect", () => {
+        console.log(`User disconnected: ${socket.id}`);
         socket.broadcast.emit("callEnded");
     });
 
     socket.on("callUser", (data) => {
+        console.log(`Call initiated from ${socket.id} to ${data.userToCall}`);
         io.to(data.userToCall).emit("callUser", {
             signal: data.signalData,
             from: data.from,
@@ -32,14 +36,12 @@ io.on("connection", (socket) => {
     });
 
     socket.on("answerCall", (data) => {
+        console.log(`Call answered from ${socket.id} to ${data.to}`);
         io.to(data.to).emit("callAccepted", data.signal);
     });
-
-    // // Listener for "callEnded" event
-    // socket.on("callEnded", () => {
-    //     console.log("Call ended event received.");
-    //     // Add any additional logic related to callEnded event if needed
-    // });
 });
 
-server.listen(5000, () => console.log("Video Server is running at port 5000"));
+
+const PORT = process.env.PORT || 5000;
+server.listen(PORT, () => console.log(`Video Server is running at port ${PORT}`));
+
