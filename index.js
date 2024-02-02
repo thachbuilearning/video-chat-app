@@ -11,7 +11,7 @@ const server = http.createServer(app);
 // });
 const io = require("socket.io")(server, {
     cors: {
-        origin: ["https://simple-peer-video-chat-frontend.vercel.app/"],
+        origin: ["https://simple-peer-video-chat-frontend.vercel.app"],
         method: ["GET", "POST"]
     }
 });
